@@ -12,6 +12,30 @@ class RiskAssessmentModel extends ChangeNotifier {
   String noGo = '';
   String notes = '';
 
+  int _openHazardIndex = -1;
+  int _openSubHazardIndex = -1;
+
+  int get openHazardIndex => _openHazardIndex;
+  int get openSubHazardIndex => _openSubHazardIndex;
+
+  void toggleHazardExpansion(int index) {
+    if (_openHazardIndex == index) {
+      _openHazardIndex = -1;
+    } else {
+      _openHazardIndex = index; 
+    }
+    notifyListeners();
+  }
+
+  void toggleSubHazardExpansion(int index) {
+    if (_openSubHazardIndex == index) {
+      _openSubHazardIndex = -1; 
+    } else {
+      _openSubHazardIndex = index;
+    }
+    notifyListeners();
+  }
+
   void updateSelectedHazard(String? hazard) {
     selectedHazard = hazard;
     notifyListeners();
